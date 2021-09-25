@@ -2,7 +2,10 @@ version: "3.4"
 
 services:
   app:
-    image: learning-docker/docker-node-mongo-redis:v1
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: doctorcare-docker/docker-node-mongo-redis:v1
     volumes:
       - ./:/app # mount từ môi trường gốc vào trong để nếu các bạn thay đổi code thì bên trong sẽ tự động cập nhật
     environment: # phần này ta định nghĩa ở file .env nhé
@@ -15,8 +18,10 @@ services:
       - REDIS_PORT=${REDIS_PORT}
       # - REDIS_PASSWORD=mypassword
       - PORT=${PORT}
+   
     ports:
       - "${PORT}:${PORT}" # phần này ta định nghĩa ở file .env nhé
+    command: yarn dev
     restart: always
     depends_on:
         - redis

@@ -30,7 +30,7 @@ module.exports ={
     cache:  async function(req, res, next) {
         const username = req.body.username
         redisClient.get(username, (err, data) =>{
-            
+            console.log(data);
         if(err) {
             console.log('failed');
             throw err};
