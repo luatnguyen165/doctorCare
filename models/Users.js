@@ -20,6 +20,9 @@ const userSchema = mongoose.Schema({
         type:Boolean,
         default:false
     },
+    tokenMail:{
+        type:String,
+    },
     resetPassword:{
         type:String
     },
