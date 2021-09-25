@@ -13,13 +13,15 @@
     "dotenv": "^10.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "fetch": "^1.1.0",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.7",
     "morgan": "~1.9.1",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "2.6.0",
     "nodemailer": "^6.6.5",
     "nodemon": "^2.0.13",
+    "random-int": "2.0.1",
     "redis": "^3.1.2",
     "socket.io": "^4.2.0"
   }

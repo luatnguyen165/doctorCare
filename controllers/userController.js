@@ -1,11 +1,49 @@
 const Users = require("../models/Users");
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
+const redisClient = require("../database/redis");
+const fetch = require('node-fetch');
 module.exports ={
     getListRegister: async function(req, res, next) {
         const userList = await Users.find();
         userList?res.send({message:'Thành công',userLists:userList}):res.status(404).json({error:'Danh sách user bị lỗi'});
     },
+    //  sử dụng redis để tăng khả năng truy vấn dữ liệu
+    getResp:  async function(req, res, next) {
+        res.render('respo');
+    },
+    getResponse: async function(req, res, next) {
+        try {
+            console.log('Fetching data...');
+            const username = req.body.username;
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            const data = await response.json();
+            const repos = data.public_repos;
+            //send data to redis
+            redisClient.SETEX(username, 60, repos);
+            res.render('respo' ,{repos_result: repos});
+        } catch (err){
+            console.error(err);
+            res.status(500);
+        }
+    },
+    cache:  async function(req, res, next) {
+        const username = req.body.username
+        redisClient.get(username, (err, data) =>{
+            
+        if(err) {
+            console.log('failed');
+            throw err};
+
+        if(data !== null){
+            res.render('respo' ,{repos_result: data});
+
+        }else{
+            next();
+        }
+    })
+    },
+    // end redis cache
     getRegister: async function(req, res, next) {
         res.render('register')
     },
