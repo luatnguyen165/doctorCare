@@ -1,5 +1,5 @@
 # doctorCare
-server redis caching , mongodb
+Khởi động docker trước xong thực hiện  các câu lệnh dưới 
 để chạy dùng 2 câu lệnh dưới
 - yarn install 
 - docker-compose up
