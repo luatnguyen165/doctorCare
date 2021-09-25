@@ -6,4 +6,5 @@ Khởi động docker trước xong thực hiện  các câu lệnh dưới
 - docker-compose down --> dùng để tắt docker khi dừng chường trình
 
 - khi có lỗi xảy ra xóa .docker trong vscode rồi docker-compose up
+- sử dụng database mongo and redis 
 
