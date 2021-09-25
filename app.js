@@ -6,9 +6,11 @@ var logger = require('morgan');
 var cors = require('cors');
 var connect = require('./database/mongoDB');
 connect();
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+const redisClient = require('./database/redis');
 var app = express();
 
 // view engine setup
