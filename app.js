@@ -4,13 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+
+// database  connect mongodb, redis, elasticsearch 
 var connect = require('./database/mongoDB');
 connect();
+const redisClient = require('./database/redis');
+const checkConnection = require('./database/elasticsearch');
+checkConnection();
 
-
+// end database 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const redisClient = require('./database/redis');
+
 var app = express();
 
 // view engine setup
