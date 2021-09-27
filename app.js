@@ -13,8 +13,9 @@ const checkConnection = require('./database/elasticsearch');
 checkConnection();
 
 // end database 
+// khai báo route
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var degreeRouter = require('./routes/degree');
 
 var app = express();
 
@@ -70,7 +71,7 @@ async function run () {
   console.log(body.hits.hits)
 }
 
-run().catch(console.log)
+// run().catch(console.log)
 // end elasticsearch
 
 // view engine setup
@@ -83,9 +84,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/danh-sach-users', indexRouter);
+app.use('/danh-sach-bang-cap',degreeRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

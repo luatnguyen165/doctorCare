@@ -3,11 +3,14 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 const redisClient = require("../database/redis");
 const fetch = require('node-fetch');
-const { check, validationResult } = require('express-validator');
 module.exports ={
     getListRegister: async function(req, res, next) {
-        const userList = await Users.find();
-        userList?res.send({message:'Thành công',userLists:userList}):res.status(404).json({error:'Danh sách user bị lỗi'});
+        try {
+            const userList = await Users.find();
+            userList?res.send({message:'Thành công',userLists:userList}):res.status(404).json({error:'Danh sách user bị lỗi'});
+        } catch (error) {
+            throw new Error(e)
+        }
     },
     //  sử dụng redis để tăng khả năng truy vấn dữ liệu
     getResp:  async function(req, res, next) {
@@ -45,9 +48,6 @@ module.exports ={
     })
     },
     // end redis cache
-    getRegister: async function(req, res, next) {
-        res.render('register')
-    },
     // getVerify: async function(req, res, next) {
     //     const token = req.params.token;
     //     res.redirect(`/verify/${token}`)
@@ -67,15 +67,21 @@ module.exports ={
     },
 
     postRegister: async function(req, res, next) {
-        try{ 
-               
+        try{    
             const { firstName,lastName,email,password,phone }=req.body;
             const token = jwt.sign({email:email},process.env.TOKENMAIL,{
                 expiresIn:process.env.EXPRIREMAIL
             })
             const tokenMail=token;
-            const user=new Users({firstName,lastName,email,password,phone,tokenMail});
+            const user=new Users({firstName:firstName,lastName:lastName,email:email,password:password,phone:phone,tokenMail:tokenMail});
+           
             const item = await user.save();
+            item?res.status(200).json({
+                message:'Đăng ký thành công',
+                userLists:item,
+
+            }):res.status(404).json({error:'Đăng ký thất bại'});
+            
             try{
                 var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
                     from: 'Doctor Care',
@@ -87,10 +93,10 @@ module.exports ={
                 let transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 465,
-                    secure: true, // true for 465, false for other ports
+                    secure: true, 
                     auth: {
-                      user: process.env.USER_MAIL, // generated ethereal user
-                      pass:process.env.PASS_MAIL, // generated ethereal password
+                      user: process.env.USER_MAIL, 
+                      pass:process.env.PASS_MAIL, 
                     },
                 });
                 transporter.sendMail(mainOptions, function(err, info){
@@ -104,11 +110,7 @@ module.exports ={
                 throw new Error(e)
             }
             
-            item?res.status(200).json({
-                message:'Đăng ký thành công',
-                userLists:item,
-
-            }):res.status(404).json({error:'Đăng ký thất bại'});
+           
         }catch(e){
             throw new Error(e)
         }

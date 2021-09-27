@@ -1,5 +1,5 @@
 var express = require('express');
-const { getRegister, postRegister,getListRegister,postVerify,getVerify,getResponse,cache,getResp } = require('../controllers/userController');
+const {  postRegister,getListRegister,postVerify,getVerify,getResponse,cache,getResp } = require('../controllers/userController');
 
 // check lại phần này * Nguyễn Văn Luật
 // const { body } = require('express-validator');
@@ -7,8 +7,7 @@ const { getRegister, postRegister,getListRegister,postVerify,getVerify,getRespon
 
 var router = express.Router();
 /* GET home page. */
-router.get('/',getRegister);
-router.get('/list-register',getListRegister);
+router.get('/',getListRegister);
 // router.get('/verify/:token',getVerify)
 router.post('/respo',cache,getResponse);
 router.get('/respo',getResp);
