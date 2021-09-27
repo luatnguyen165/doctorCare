@@ -1,7 +1,11 @@
 var express = require('express');
 const { getRegister, postRegister,getListRegister,postVerify,getVerify,getResponse,cache,getResp } = require('../controllers/userController');
-var router = express.Router();
 
+// check lại phần này * Nguyễn Văn Luật
+// const { body } = require('express-validator');
+// const validate = require('../common/common');
+
+var router = express.Router();
 /* GET home page. */
 router.get('/',getRegister);
 router.get('/list-register',getListRegister);

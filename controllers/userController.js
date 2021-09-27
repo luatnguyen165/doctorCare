@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 const redisClient = require("../database/redis");
 const fetch = require('node-fetch');
+const { check, validationResult } = require('express-validator');
 module.exports ={
     getListRegister: async function(req, res, next) {
         const userList = await Users.find();
@@ -66,7 +67,8 @@ module.exports ={
     },
 
     postRegister: async function(req, res, next) {
-        try{
+        try{ 
+               
             const { firstName,lastName,email,password,phone }=req.body;
             const token = jwt.sign({email:email},process.env.TOKENMAIL,{
                 expiresIn:process.env.EXPRIREMAIL

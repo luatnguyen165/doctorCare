@@ -21,7 +21,7 @@ services:
    
     ports:
       - "${PORT}:${PORT}" # phần này ta định nghĩa ở file .env nhé
-    command: yarn dev
+    command: yarn run dev
     restart: always
     depends_on:
         - redis

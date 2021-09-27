@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
+EXPOSE 3000
+
+RUN yarn install
 
 # Development
-CMD ["npm", "run", "dev"]
+CMD ["npm",'yarn', "start",'dev']
 
 
 # # Production
