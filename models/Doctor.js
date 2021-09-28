@@ -2,19 +2,22 @@ const mongoose = require('mongoose');
 const doctorSchema = mongoose.Schema({
     doctorName:{
         type:String,
-        required:true,
+        // required:true,
+    },
+    doctorImage:{
+        type:mongoose.Schema.Types.Mixed,
     },
     doctorSex:{
         type:String,
-        required:true,
+        // required:true,
     },
     doctorBirdthday:{
         type:Date,
-        required:true,
+        // required:true,
     },
     doctorYearStart:{
         type:Number,
-        required:true,
+        // required:true,
     },
     doctorDescription:{
         type:String

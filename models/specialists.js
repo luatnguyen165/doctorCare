@@ -2,13 +2,16 @@ const mongoose = require('mongoose');
 
 const specialistSchema = mongoose.Schema({
     specialName:{
-        type:String
+        type:String,
+        required:true,
     },
     specialPrice:{
-        type:String
+        type:String,
+        required:true,
     },
     createAt:{
-        type:String
+        type:Date,
+        default:Date.now
     },
     updateAt:{
         type:String

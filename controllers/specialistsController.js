@@ -3,7 +3,7 @@ const Special = require('../models/specialists');
 module.exports = {
     getSpecial: async function(req,res){
         const SpecialList = await Special.find();
-        res.send(Special)
+        res.send(SpecialList)
     },
 
    

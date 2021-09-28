@@ -17,6 +17,7 @@ checkConnection();
 var indexRouter = require('./routes/index');
 var degreeRouter = require('./routes/degree');
 var doctorRouter = require('./routes/doctor');
+var specialRouter = require('./routes/specialists');
 var app = express();
 
 // Phần này là của elasticsearch  và ví dụ
@@ -86,7 +87,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/danh-sach-bac-si',doctorRouter);
 app.use('/danh-sach-users', indexRouter);
-app.use('/danh-sach-bang-cap',degreeRouter)
+app.use('/danh-sach-bang-cap',degreeRouter);
+app.use('/danh-sach-chuyen-gia',specialRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
