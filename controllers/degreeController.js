@@ -1,5 +1,5 @@
 const Degree = require("../models/Degree")
-
+const redisClient = require("../database/redis");
 module.exports ={
     getDegree: async function(req, res, next) {
         try {
@@ -14,8 +14,9 @@ module.exports ={
     getIDDegree: async function(req, res, next) {
         try {
             const id = req.params.id;
-            console.log(id);
+            
             const degreeList = await Degree.findById(id);
+     
             degreeList? res.status(200).json({
                 degree:degreeList
             }):res.status(404).json({message:`${id} không tôn tại `});
