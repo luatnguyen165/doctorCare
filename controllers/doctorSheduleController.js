@@ -1,4 +1,4 @@
-const doctorShedule = require("../models/doctorShedule")
+const doctorShedule = require("../models/doctorshedule")
 
 module.exports ={
     getDoctorShedule: async function(req, res, next) {
