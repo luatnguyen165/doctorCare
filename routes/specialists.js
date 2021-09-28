@@ -4,7 +4,7 @@ const{getSpecial, postSpecial, getIdSpecial, putIdSpecial, deleteIdSpecial}=requ
 var router = express.Router();
 router.get('/',getSpecial);
 router.post('/',postSpecial);
-router.get('/:id',getIdSpecial;
+router.get('/:id',getIdSpecial);
 router.put('/:id',putIdSpecial);
 router.delete('/:id',deleteIdSpecial);
 
