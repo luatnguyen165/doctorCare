@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
 
 const specialistSchema = mongoose.Schema({
-    Name:{
+    specialName:{
         type:String
     },
-    lastName:{
+    specialPrice:{
         type:String
     },
-    email:{
+    createAt:{
         type:String
     },
-    password:{
+    updateAt:{
         type:String
     },
-    phone:{
-        type:String
-    },
-}
+})
+module.exports = mongoose.model('specialist', specialistSchema);
