@@ -4,9 +4,7 @@ module.exports ={
     getDegree: async function(req, res, next) {
         try {
             const degreeList = await Degree.find();
-            degreeList? res.status(200).json({
-                degreeList
-            }):res.status(404).json({message:'xảy ra lỗi'});
+           res.render('admin/layout/main',{degreeList: degreeList})
         }catch(err) {
             throw new Error(e)
         }
