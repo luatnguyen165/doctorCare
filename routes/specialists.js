@@ -3,10 +3,9 @@ const{getSpecial, postSpecial, getIdSpecial, putIdSpecial, deleteIdSpecial}=requ
 
 var router = express.Router();
 router.get('/',getSpecial);
-router.post('/',postSpecial);
-router.get('/:id',getIdSpecial);
-router.put('/:id',putIdSpecial);
-router.delete('/:id',deleteIdSpecial);
-
+router.post('/them-luong-bac-si:id',postSpecial);
+router.get('/luong:id',getIdSpecial);
+router.put('/luong:id',putIdSpecial);
+router.delete('/luong:id',deleteIdSpecial);
 
 module.exports = router;
