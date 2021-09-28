@@ -15,7 +15,7 @@ checkConnection();
 // end database 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var specialistsRouter = require('./routes/specialists');
 var app = express();
 
 // Phần này là của elasticsearch  và ví dụ
