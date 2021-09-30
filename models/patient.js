@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const patientSchema = mongoose.Schema({
-    Fullname:{
+    fullname:{
         type:String,
         required:true,
     },
@@ -32,7 +32,4 @@ const patientSchema = mongoose.Schema({
         type: String
     }
 })
-
-
-
 module.exports = mongoose.model('patient', patientSchema);

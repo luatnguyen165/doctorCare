@@ -8,3 +8,4 @@ Khởi động docker trước xong thực hiện  các câu lệnh dưới
 - khi có lỗi xảy ra xóa .docker trong vscode rồi docker-compose up
 - database incluce : mongodb, redis  and full-text-search = elasticsearch
 
+   
