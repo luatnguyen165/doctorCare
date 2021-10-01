@@ -18,6 +18,11 @@ var indexRouter = require('./routes/index');
 var degreeRouter = require('./routes/degree');
 var doctorRouter = require('./routes/doctor');
 var specialRouter = require('./routes/specialists');
+var usersRouter = require('./routes/users');
+//var specialistsRouter = require('./routes/specialists');
+var doctorSheduleRouter = require('./routes/doctorShedule');
+var patientRouter = require('./routes/patient');
+
 var app = express();
 
 // Phần này là của elasticsearch  và ví dụ
